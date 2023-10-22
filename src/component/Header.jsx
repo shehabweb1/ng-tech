@@ -1,9 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthProviderContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Header = () => {
-	const user = false;
+	const { user, profile, logOut } = useContext(AuthProviderContext);
+	const navigate = useNavigate();
 
 	const [theme, setTheme] = useState(
 		localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -23,21 +26,29 @@ const Header = () => {
 		document.querySelector("html").setAttribute("data-theme", localTheme);
 	}, [theme]);
 
+	const handleLogOut = () => {
+		logOut()
+			.then(() => {
+				navigate("/");
+				Swal.fire(
+					"Welcome!",
+					"Your account has been Sign Out successful!",
+					"success"
+				);
+			})
+			.catch((error) => {
+				console.log(error.message);
+			});
+	};
+
 	const menuItems = (
 		<>
 			<li>
 				<NavLink to="/">Home</NavLink>
 			</li>
-			{user && (
-				<>
-					<li>
-						<NavLink to="/addProduct">Add Product</NavLink>
-					</li>
-					<li>
-						<NavLink to="/cart">Cart</NavLink>
-					</li>
-				</>
-			)}
+			<li>
+				<NavLink to="/addProduct">Add Product</NavLink>
+			</li>
 			<li>
 				<NavLink to="/about">About</NavLink>
 			</li>
@@ -82,11 +93,49 @@ const Header = () => {
 			</div>
 			<div className="navbar-end">
 				{user ? (
-					<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-						<div className="w-10 rounded-full">
-							<img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+					<>
+						<Link to="/cart">
+							<label className="btn btn-ghost btn-circle">
+								<div className="indicator">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										className="h-6 w-6"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth="2"
+											d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+										/>
+									</svg>
+									<span className="badge badge-sm indicator-item">0</span>
+								</div>
+							</label>
+						</Link>
+						<div className="dropdown dropdown-end">
+							<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+								<div className="w-10 rounded-full">
+									<img src={user.photoURL || profile?.photo} />
+								</div>
+							</label>
+							<ul
+								tabIndex={0}
+								className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+							>
+								<li>
+									<h4 className="text-xl">
+										{user.displayName || profile?.name}
+									</h4>
+								</li>
+								<li>
+									<button onClick={handleLogOut}>Logout</button>
+								</li>
+							</ul>
 						</div>
-					</label>
+					</>
 				) : (
 					<NavLink to="/login" className="btn">
 						Login

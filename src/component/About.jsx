@@ -9,7 +9,7 @@ const About = () => {
 				}}
 			>
 				<div className="bg-[#000000b3] w-full h-full"></div>
-				<div className="hero-content text-center py-32 text-white">
+				<div className="hero-content text-center py-36 text-white">
 					<div className="max-w-md">
 						<h1 className="text-5xl font-bold">ABOUT US</h1>
 						<p className="py-6">

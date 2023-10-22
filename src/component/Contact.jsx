@@ -1,17 +1,9 @@
 import React from "react";
-import GoogleMapReact from "google-map-react";
 import { HiOfficeBuilding, HiPhone } from "react-icons/hi";
 import { MdLocalPostOffice } from "react-icons/md";
 import { BsFillSendFill } from "react-icons/bs";
 
 const Contact = () => {
-	const defaultProps = {
-		center: {
-			lat: 23.7662,
-			lng: 90.3589,
-		},
-		zoom: 14,
-	};
 	return (
 		<div>
 			<div
@@ -22,7 +14,7 @@ const Contact = () => {
 				}}
 			>
 				<div className="bg-[#000000b3] w-full h-full"></div>
-				<div className="hero-content text-center py-32 text-white">
+				<div className="hero-content text-center py-36 text-white">
 					<div className="max-w-md">
 						<h1 className="text-5xl font-bold">CONTACT US</h1>
 						<p className="py-6">
@@ -32,23 +24,8 @@ const Contact = () => {
 					</div>
 				</div>
 			</div>
-			<div className="container mx-auto">
-				<div className="py-5">
-					<h2 className="text-3xl font-semibold text-center">Our Location</h2>
-					<div
-						className="mx-auto py-5"
-						style={{ height: "50vh", width: "60%" }}
-					>
-						<GoogleMapReact
-							bootstrapURLKeys={{ key: "" }}
-							defaultCenter={defaultProps.center}
-							defaultZoom={defaultProps.zoom}
-						>
-							<div lat={23.7662} lng={90.3589} text="My Marker" />
-						</GoogleMapReact>
-					</div>
-				</div>
-				<div className=" mb-10 grid grid-cols-1 lg:grid-cols-2 mx-auto gap-5">
+			<div className="container mx-auto my-10">
+				<div className="grid grid-cols-1 lg:grid-cols-2 mx-auto gap-5">
 					<div className="bg-base-300 py-5 rounded-2xl">
 						<h3 className="text-2xl text-center font-semibold mb-3">
 							Our Contact Details
