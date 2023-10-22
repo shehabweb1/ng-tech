@@ -8,6 +8,8 @@ import About from "../component/About";
 import Contact from "../component/Contact";
 import AddProduct from "../component/Product/AddProduct";
 import PrivateRoute from "./../PrivateRoute/PrivateRoute";
+import Cart from "../component/Product/Cart";
+import Products from "../component/Product/Products";
 
 const router = createBrowserRouter([
 	{
@@ -18,14 +20,12 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <Home />,
+				loader: () => fetch("./band.json"),
 			},
 			{
-				path: "/login",
-				element: <Login />,
-			},
-			{
-				path: "/register",
-				element: <Register />,
+				path: "/:brand",
+				element: <Products />,
+				loader: () => fetch("./products.json"),
 			},
 			{
 				path: "/about",
@@ -36,10 +36,26 @@ const router = createBrowserRouter([
 				element: <Contact />,
 			},
 			{
+				path: "/login",
+				element: <Login />,
+			},
+			{
+				path: "/register",
+				element: <Register />,
+			},
+			{
 				path: "/addProduct",
 				element: (
 					<PrivateRoute>
 						<AddProduct />
+					</PrivateRoute>
+				),
+			},
+			{
+				path: "/cart",
+				element: (
+					<PrivateRoute>
+						<Cart />
 					</PrivateRoute>
 				),
 			},

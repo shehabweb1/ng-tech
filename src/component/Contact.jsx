@@ -2,8 +2,21 @@ import React from "react";
 import { HiOfficeBuilding, HiPhone } from "react-icons/hi";
 import { MdLocalPostOffice } from "react-icons/md";
 import { BsFillSendFill } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 const Contact = () => {
+	const handleContactForm = (e) => {
+		e.preventDefault();
+		const form = e.target;
+		Swal.fire(
+			"Thank You!",
+			"Your message has been sent successfully!",
+			"success"
+		);
+		form.name.value = "";
+		form.email.value = "";
+		form.message.value = "";
+	};
 	return (
 		<div>
 			<div
@@ -48,13 +61,14 @@ const Contact = () => {
 						<h3 className="text-2xl text-center font-semibold mb-3">
 							Our Contact Form
 						</h3>
-						<form className="w-3/4 mx-auto">
+						<form onSubmit={handleContactForm} className="w-3/4 mx-auto">
 							<fieldset className="form-control">
 								<label className="label">
 									<span className="label-text">Enter your Full Name</span>
 								</label>
 								<input
 									type="text"
+									name="name"
 									placeholder="Enter your Full Name"
 									className="input input-bordered w-full pr-16"
 									required
@@ -66,6 +80,7 @@ const Contact = () => {
 								</label>
 								<input
 									type="email"
+									name="email"
 									placeholder="Enter your email address"
 									className="input input-bordered w-full pr-16"
 									required
@@ -78,6 +93,7 @@ const Contact = () => {
 								<textarea
 									className="textarea textarea-bordered"
 									placeholder="Write a Message"
+									name="message"
 								></textarea>
 							</fieldset>
 							<button type="submit" className="btn btn-primary mt-3">

@@ -1,8 +1,15 @@
 import { HiOfficeBuilding, HiPhone } from "react-icons/hi";
 import { MdLocalPostOffice } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Footer = () => {
+	const handleNewsletter = (e) => {
+		e.preventDefault();
+		const form = e.target;
+		Swal.fire("Thank You!", "Successfully Subscribed!", "success");
+		form.email.value = "";
+	};
 	return (
 		<footer className="p-10 bg-base-300 ">
 			<div className="footer text-base-content">
@@ -60,7 +67,7 @@ const Footer = () => {
 						</Link>
 					</div>
 				</nav>
-				<form>
+				<form onSubmit={handleNewsletter}>
 					<header className="footer-title">Newsletter</header>
 					<fieldset className="form-control w-80">
 						<label className="label">
@@ -69,6 +76,7 @@ const Footer = () => {
 						<div className="relative">
 							<input
 								type="email"
+								name="email"
 								placeholder="Enter your email address"
 								className="input input-bordered w-full pr-16"
 								required

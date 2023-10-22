@@ -21,6 +21,7 @@ const Login = () => {
 				Swal.fire("Thank You!", "Account Login successful!", "success");
 			})
 			.catch((error) => {
+				navigate(location?.state ? location.state : "/login");
 				Swal.fire(error.message);
 			});
 	};

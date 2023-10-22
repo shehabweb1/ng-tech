@@ -1,0 +1,62 @@
+[
+    {
+        "product_id": 1,
+        "brand": "nvidia",
+        "name": "NVIDIA Quadro P1000 4GB GDDR5 Graphics Card",
+        "image": "https://www.startech.com.bd/image/cache/catalog/graphics-card/nvidia/quadro-p1000/quadro-p1000-02-500x500.webp",
+        "short_description": "The NVIDIA Quadro P1000 4GB GDDR5 Graphics Card combines a 640 CUDA core Pascal GPU, 4 GB GDDR5 on-board memory, and advanced display technologies in a low-profile form factor that delivers amazing graphics performance for demanding professional applications.",
+        "price": "15000",
+        "rating": "4.2",
+        "type": "Graphics Card"
+    },
+    {
+        "product_id": 2,
+        "brand": "lenovo",
+        "name": "Lenovo IdeaCentre 3 AMD Athlon Silver 3050U",
+        "image": "https://www.startech.com.bd/image/cache/catalog/brand-pc/lenevo/ideacentre-3/ideacentre-3-01-500x500.jpg",
+        "short_description": "The Lenovo IdeaCentre 3 computer has an AMD Athlon Silver 3050U processor (2.3 GHz up to 3.2GHz). This crucial business desktop has integrated AMD Radeon graphics, 4GB of 2400 MHz RAM, and an AMD SoC platform. It also has 1TB of 7200 rpm SATA storage to offer improved usability. ",
+        "price": "30000",
+        "rating": "4.4",
+        "type": "Brand PC"
+    },
+    {
+        "product_id": 3,
+        "brand": "samsung",
+        "name": "Samsung 870 EVO 250GB 2.5 Inch SATA",
+        "image": "https://www.startech.com.bd/image/cache/catalog/ssd/samsung/870-evo/870-evo-01-500x500.jpg",
+        "short_description": "he Samsung 870 EVO achieves the maximum SATA interface limit of 560/530 MB/s sequential speeds. you can now enjoy professional-level SSD performance. ",
+        "price": "4000",
+        "rating": "4.5",
+        "type": "Internal SSD"
+    },
+    {
+        "product_id": 4,
+        "brand": "intel",
+        "name": "Intel 14th Gen Core i5 14600K Raptor Lake Processor",
+        "image": "https://www.startech.com.bd/image/cache/catalog/processor/Intel/core-i5-14600k/core-i5-14600k-01-500x500.webp",
+        "short_description": "The 14600K Core i5 Intel 14th Gen Processor will boost your productivity, gaming, and content production. This 14th-generation desktop CPU, built on the Intel 7 technology, provides increased power efficiency while fitting the LGA 1700 socket.",
+        "price": "40000",
+        "rating": "4.0",
+        "type": "Processor"
+    },
+    {
+        "product_id": 5,
+        "brand": "dell",
+        "name": "Dell Vostro 3910 MT Core i5 12th Gen",
+        "image": "https://www.startech.com.bd/image/cache/catalog/brand-pc/dell/vostro-3910-mt/vostro-3910-01-500x500.webp",
+        "short_description": "The Dell Vostro 3910 MT Core i5 12th Gen Tower Brand PC features Intel 12th Gen Core i5-12400 processors with innovative Hybrid Core technology, providing improved performance for more effective workdays.",
+        "price": "66000",
+        "rating": "4.3",
+        "type": "Brand PC"
+    },
+    {
+        "product_id": 6,
+        "brand": "dell",
+        "name": "Apple MacBook Air 13.3-Inch Display 8-core M1 chip",
+        "image": "https://www.startech.com.bd/image/cache/catalog/laptop/apple/macbook-air/space-gray/13-inch/macbook-air-13-3-inch-500x500.webp",
+        "short_description": "Apple's thinnest, lightest notebook, completely transformed by the Apple M1 chip. CPU speeds up to 3.5x faster. GPU speeds up to 5x faster. Our most advanced Neural Engine for up to 9x faster machine learning.",
+        "price": "106000",
+        "rating": "4.7",
+        "type": "Laptop"
+    }
+]

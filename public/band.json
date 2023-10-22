@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "brand_name": "nvidia",
+        "brand_image": "https://i.ibb.co/FYN2m7C/nvidia.png"
+    },
+    {
+        "id": 2,
+        "brand_name": "lenovo",
+        "brand_image": "https://i.ibb.co/R088zPT/lenevo.png"
+    },
+    {
+        "id": 3,
+        "brand_name": "samsung",
+        "brand_image": "https://i.ibb.co/RP1dF72/samsung.png"
+    },
+    {
+        "id": 4,
+        "brand_name": "dell",
+        "brand_image": "https://i.ibb.co/b6m7Tss/dell.png"
+    },
+    {
+        "id": 5,
+        "brand_name": "apple",
+        "brand_image": "https://i.ibb.co/vzrJHZG/apple.png"
+    },
+    {
+        "id": 6,
+        "brand_name": "intel",
+        "brand_image": "https://i.ibb.co/7tPPP9t/intel.png"
+    }
+]
