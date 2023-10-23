@@ -1,13 +1,31 @@
 import React from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 
-const AddProduct = () => {
-	const handleAddProduct = (e) => {
+const UpdateProduct = () => {
+	const { id } = useParams();
+	const idNum = parseInt(id);
+	const products = useLoaderData();
+	const product = products.filter((product) => product.product_id === idNum);
+
+	const {
+		product_id,
+		name,
+		image,
+		brand,
+		price,
+		rating,
+		type,
+		short_description,
+	} = product[0];
+
+	const handleUpdateProduct = (e) => {
 		e.preventDefault();
 		// const form = new FormData(e.currentTarget);
 		// const email = form.get("email");
 		// const password = form.get("password");
-		console.log("It's Working");
+		console.log(product_id);
 	};
+
 	return (
 		<div className="container mx-auto">
 			<h1 className="text-3xl text-center font-semibold my-10">
@@ -16,7 +34,7 @@ const AddProduct = () => {
 			<div className="mb-10 sm:mx-auto sm:w-full sm:max-w-md lg:max-w-xl">
 				<form
 					className="grid grid-cols-1 lg:grid-cols-2 gap-4"
-					onSubmit={handleAddProduct}
+					onSubmit={handleUpdateProduct}
 				>
 					<div className="lg:col-span-2">
 						<label
@@ -31,6 +49,7 @@ const AddProduct = () => {
 								name="image"
 								type="text"
 								autoComplete="image"
+								defaultValue={image}
 								required
 								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								placeholder="Product Image url"
@@ -50,6 +69,7 @@ const AddProduct = () => {
 								name="name"
 								type="text"
 								autoComplete="name"
+								defaultValue={name}
 								required
 								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								placeholder="Product Name"
@@ -70,6 +90,7 @@ const AddProduct = () => {
 								name="brand"
 								type="text"
 								autoComplete="brand"
+								defaultValue={brand}
 								required
 								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								placeholder="Brand Name"
@@ -90,6 +111,7 @@ const AddProduct = () => {
 								name="type"
 								type="text"
 								autoComplete="type"
+								defaultValue={type}
 								required
 								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								placeholder="Product Type"
@@ -110,6 +132,7 @@ const AddProduct = () => {
 								name="price"
 								type="text"
 								autoComplete="price"
+								defaultValue={price}
 								required
 								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								placeholder="Product Price"
@@ -129,6 +152,7 @@ const AddProduct = () => {
 								name="rating"
 								type="text"
 								autoComplete="rating"
+								defaultValue={rating}
 								required
 								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								placeholder="Product Rating"
@@ -137,15 +161,17 @@ const AddProduct = () => {
 					</div>
 					<div className="lg:col-span-2">
 						<label
-							htmlFor="description"
+							htmlFor="short_description"
 							className="block text-sm font-medium leading-6 "
 						>
 							Short description
 						</label>
 						<textarea
-							id="description"
-							name="description"
-							autoComplete="description"
+							rows="5"
+							id="short_description"
+							name="short_description"
+							autoComplete="short_description"
+							defaultValue={short_description}
 							required
 							className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 							placeholder="Write a Product Short description"
@@ -157,7 +183,7 @@ const AddProduct = () => {
 							type="submit"
 							className="flex w-full justify-center rounded-md bg-blue-600 hover:bg-blue-700 px-3 py-2 text-base font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
 						>
-							Add Product
+							Update Product
 						</button>
 					</div>
 				</form>
@@ -166,4 +192,4 @@ const AddProduct = () => {
 	);
 };
 
-export default AddProduct;
+export default UpdateProduct;

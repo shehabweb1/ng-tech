@@ -10,6 +10,26 @@
         "type": "Graphics Card"
     },
     {
+        "product_id": 11,
+        "brand": "nvidia",
+        "name": "NVIDIA Quadro P1000 4GB GDDR5 Graphics Card",
+        "image": "https://www.startech.com.bd/image/cache/catalog/graphics-card/nvidia/quadro-p1000/quadro-p1000-02-500x500.webp",
+        "short_description": "The NVIDIA Quadro P1000 4GB GDDR5 Graphics Card combines a 640 CUDA core Pascal GPU, 4 GB GDDR5 on-board memory, and advanced display technologies in a low-profile form factor that delivers amazing graphics performance for demanding professional applications.",
+        "price": "15000",
+        "rating": "4.2",
+        "type": "Graphics Card"
+    },
+    {
+        "product_id": 21,
+        "brand": "nvidia",
+        "name": "NVIDIA Quadro P1000 4GB GDDR5 Graphics Card",
+        "image": "https://www.startech.com.bd/image/cache/catalog/graphics-card/nvidia/quadro-p1000/quadro-p1000-02-500x500.webp",
+        "short_description": "The NVIDIA Quadro P1000 4GB GDDR5 Graphics Card combines a 640 CUDA core Pascal GPU, 4 GB GDDR5 on-board memory, and advanced display technologies in a low-profile form factor that delivers amazing graphics performance for demanding professional applications.",
+        "price": "15000",
+        "rating": "4.2",
+        "type": "Graphics Card"
+    },
+    {
         "product_id": 2,
         "brand": "lenovo",
         "name": "Lenovo IdeaCentre 3 AMD Athlon Silver 3050U",

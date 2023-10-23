@@ -10,6 +10,8 @@ import AddProduct from "../component/Product/AddProduct";
 import PrivateRoute from "./../PrivateRoute/PrivateRoute";
 import Cart from "../component/Product/Cart";
 import Products from "../component/Product/Products";
+import ProductDetails from "../component/Product/ProductDetails";
+import UpdateProduct from "../component/Product/UpdateProduct";
 
 const router = createBrowserRouter([
 	{
@@ -20,12 +22,12 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <Home />,
-				loader: () => fetch("./band.json"),
+				loader: () => fetch("../band.json"),
 			},
 			{
 				path: "/:brand",
 				element: <Products />,
-				loader: () => fetch("./products.json"),
+				loader: () => fetch("../products.json"),
 			},
 			{
 				path: "/about",
@@ -44,12 +46,30 @@ const router = createBrowserRouter([
 				element: <Register />,
 			},
 			{
+				path: "/product/:id",
+				element: (
+					<PrivateRoute>
+						<ProductDetails />
+					</PrivateRoute>
+				),
+				loader: () => fetch("../products.json"),
+			},
+			{
 				path: "/addProduct",
 				element: (
 					<PrivateRoute>
 						<AddProduct />
 					</PrivateRoute>
 				),
+			},
+			{
+				path: "product/update/:id",
+				element: (
+					<PrivateRoute>
+						<UpdateProduct />
+					</PrivateRoute>
+				),
+				loader: () => fetch("../products.json"),
 			},
 			{
 				path: "/cart",
