@@ -44,16 +44,29 @@ const Register = () => {
 		const photo = form.get("photo");
 		const password = form.get("password");
 
-		const profile = { name, photo };
+		const profile = { name, email, photo };
 
-		createUser(email, password, profile)
+		createUser(email, password)
 			.then((result) => {
+				fetch("https://ng-tech-server.vercel.app/users", {
+					method: "POST",
+					headers: {
+						"content-type": "application/json",
+					},
+					body: JSON.stringify(profile),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						if (data.insertedId) {
+							Swal.fire(
+								`Thank You ${name}!`,
+								"Your account has been created successful!",
+								"success"
+							);
+						}
+					});
+
 				navigate("/");
-				Swal.fire(
-					`Thank You ${name}!`,
-					"Your account has been created successful!",
-					"success"
-				);
 			})
 			.catch((err) => {
 				Swal.fire({

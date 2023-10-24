@@ -16,13 +16,13 @@ const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState();
 	const [loading, setLoading] = useState(true);
 
-	const [profile, setProfile] = useState();
+	const [userEmail, setUserEmail] = useState();
 
 	const provider = new GoogleAuthProvider();
 
-	const createUser = (email, password, profile) => {
+	const createUser = (email, password) => {
 		setLoading(true);
-		setProfile(profile);
+		setUserEmail(email);
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
@@ -37,12 +37,13 @@ const AuthProvider = ({ children }) => {
 			})
 			.catch((error) => {
 				const errorMessage = error.message;
-				console.log(errorMessage);
+				console.error(errorMessage);
 			});
 	};
 
 	const loginUser = (email, password) => {
 		setLoading(true);
+		setUserEmail(email);
 		return signInWithEmailAndPassword(auth, email, password);
 	};
 
@@ -61,6 +62,8 @@ const AuthProvider = ({ children }) => {
 		};
 	}, []);
 
+	
+
 	const authValue = {
 		user,
 		createUser,
@@ -68,7 +71,7 @@ const AuthProvider = ({ children }) => {
 		loginUser,
 		logOut,
 		loading,
-		profile,
+		userEmail,
 	};
 
 	return (

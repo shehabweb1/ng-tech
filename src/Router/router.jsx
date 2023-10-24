@@ -22,12 +22,12 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <Home />,
-				loader: () => fetch("../band.json"),
+				loader: () => fetch("https://ng-tech-server.vercel.app/brands"),
 			},
 			{
 				path: "/:brand",
 				element: <Products />,
-				loader: () => fetch("../products.json"),
+				loader: () => fetch("https://ng-tech-server.vercel.app/products"),
 			},
 			{
 				path: "/about",
@@ -52,7 +52,8 @@ const router = createBrowserRouter([
 						<ProductDetails />
 					</PrivateRoute>
 				),
-				loader: () => fetch("../products.json"),
+				loader: ({ params }) =>
+					fetch(`https://ng-tech-server.vercel.app/products/${params.id}`),
 			},
 			{
 				path: "/addProduct",
@@ -69,7 +70,8 @@ const router = createBrowserRouter([
 						<UpdateProduct />
 					</PrivateRoute>
 				),
-				loader: () => fetch("../products.json"),
+				loader: ({ params }) =>
+					fetch(`https://ng-tech-server.vercel.app/products/${params.id}`),
 			},
 			{
 				path: "/cart",
@@ -78,6 +80,7 @@ const router = createBrowserRouter([
 						<Cart />
 					</PrivateRoute>
 				),
+				loader: () => fetch("https://ng-tech-server.vercel.app/cart"),
 			},
 		],
 	},

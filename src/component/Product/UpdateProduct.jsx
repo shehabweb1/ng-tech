@@ -1,29 +1,46 @@
 import React from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
-	const { id } = useParams();
-	const idNum = parseInt(id);
-	const products = useLoaderData();
-	const product = products.filter((product) => product.product_id === idNum);
+	const product = useLoaderData();
 
-	const {
-		product_id,
-		name,
-		image,
-		brand,
-		price,
-		rating,
-		type,
-		short_description,
-	} = product[0];
+	const { _id, name, image, brand, price, rating, type, description } = product;
 
 	const handleUpdateProduct = (e) => {
 		e.preventDefault();
-		// const form = new FormData(e.currentTarget);
-		// const email = form.get("email");
-		// const password = form.get("password");
-		console.log(product_id);
+		const form = new FormData(e.currentTarget);
+		const name = form.get("name");
+		const image = form.get("image");
+		const brand = form.get("brand").toLocaleLowerCase();
+		const type = form.get("type");
+		const price = form.get("price");
+		const rating = form.get("rating");
+		const description = form.get("description");
+
+		const updateProduct = {
+			name,
+			image,
+			brand,
+			type,
+			price,
+			rating,
+			description,
+		};
+
+		fetch(`https://ng-tech-server.vercel.app/products/${_id}`, {
+			method: "PUT",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(updateProduct),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.modifiedCount > 0) {
+					Swal.fire("Successfully!", "Product Updated!", "success");
+				}
+			});
 	};
 
 	return (
@@ -36,26 +53,6 @@ const UpdateProduct = () => {
 					className="grid grid-cols-1 lg:grid-cols-2 gap-4"
 					onSubmit={handleUpdateProduct}
 				>
-					<div className="lg:col-span-2">
-						<label
-							htmlFor="image"
-							className="block text-sm font-medium leading-6 "
-						>
-							Product Image
-						</label>
-						<div className="mt-2">
-							<input
-								id="image"
-								name="image"
-								type="text"
-								autoComplete="image"
-								defaultValue={image}
-								required
-								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-								placeholder="Product Image url"
-							/>
-						</div>
-					</div>
 					<div className="lg:col-span-2">
 						<label
 							htmlFor="name"
@@ -73,6 +70,27 @@ const UpdateProduct = () => {
 								required
 								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								placeholder="Product Name"
+							/>
+						</div>
+					</div>
+
+					<div className="lg:col-span-2">
+						<label
+							htmlFor="image"
+							className="block text-sm font-medium leading-6 "
+						>
+							Product Image
+						</label>
+						<div className="mt-2">
+							<input
+								id="image"
+								name="image"
+								type="text"
+								autoComplete="image"
+								defaultValue={image}
+								required
+								className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+								placeholder="Product Image url"
 							/>
 						</div>
 					</div>
@@ -161,17 +179,17 @@ const UpdateProduct = () => {
 					</div>
 					<div className="lg:col-span-2">
 						<label
-							htmlFor="short_description"
+							htmlFor="description"
 							className="block text-sm font-medium leading-6 "
 						>
 							Short description
 						</label>
 						<textarea
 							rows="5"
-							id="short_description"
-							name="short_description"
-							autoComplete="short_description"
-							defaultValue={short_description}
+							id="description"
+							name="description"
+							autoComplete="description"
+							defaultValue={description}
 							required
 							className="block w-full rounded-md border-0 py-2 px-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 							placeholder="Write a Product Short description"

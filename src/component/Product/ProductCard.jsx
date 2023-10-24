@@ -3,7 +3,7 @@ import { BsFillStarFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-	const { product_id, name, image, brand, price, rating, type } = product;
+	const { _id, name, image, brand, price, rating, type } = product;
 
 	return (
 		<div className="rounded-xl shadow-xl">
@@ -23,10 +23,10 @@ const ProductCard = ({ product }) => {
 					<p>Price: {price} TK</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Link to={`/product/update/${product_id}`}>
+					<Link to={`/product/update/${_id}`}>
 						<button className="btn btn-info">Update</button>
 					</Link>
-					<Link to={`/product/${product_id}`}>
+					<Link to={`/product/${_id}`}>
 						<button className="btn btn-primary">Details</button>
 					</Link>
 				</div>

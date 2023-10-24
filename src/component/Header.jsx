@@ -5,12 +5,22 @@ import { AuthProviderContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Header = () => {
-	const { user, profile, logOut } = useContext(AuthProviderContext);
+	const { user, userEmail, logOut } = useContext(AuthProviderContext);
 	const navigate = useNavigate();
 
 	const [theme, setTheme] = useState(
 		localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
 	);
+
+	const [userData, setUserData] = useState();
+
+	useEffect(() => {
+		fetch("https://ng-tech-server.vercel.app/users")
+			.then((res) => res.json())
+			.then((data) => setUserData(data));
+	}, []);
+
+	const profile = userData?.find((user) => user.email === userEmail);
 
 	const handleToggle = (e) => {
 		if (e.target.checked) {
@@ -49,6 +59,11 @@ const Header = () => {
 			<li>
 				<NavLink to="/addProduct">Add Product</NavLink>
 			</li>
+			{user && (
+				<li>
+					<NavLink to="/cart">My Cart</NavLink>
+				</li>
+			)}
 			<li>
 				<NavLink to="/about">About</NavLink>
 			</li>
@@ -94,27 +109,6 @@ const Header = () => {
 			<div className="navbar-end">
 				{user ? (
 					<>
-						<Link to="/cart">
-							<label className="btn btn-ghost btn-circle">
-								<div className="indicator">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-6 w-6"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth="2"
-											d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-										/>
-									</svg>
-									<span className="badge badge-sm indicator-item">0</span>
-								</div>
-							</label>
-						</Link>
 						<div className="dropdown dropdown-end">
 							<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 								<div className="w-10 rounded-full">

@@ -1,31 +1,31 @@
 import React from "react";
 import { BsFillStarFill } from "react-icons/bs";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ProductDetails = () => {
-	const { id } = useParams();
-	const idNum = parseInt(id);
-	const Products = useLoaderData();
-	const product = Products.filter((product) => product.product_id === idNum);
+	const product = useLoaderData();
 
-	const {
-		product_id,
-		name,
-		image,
-		brand,
-		price,
-		rating,
-		type,
-		short_description,
-	} = product[0];
+	const { _id, name, image, brand, price, rating, type, description } = product;
 
-	const handleAddCart = (id) => {
-		Swal.fire(
-			"Successfully!",
-			"This product has been added to the cart!",
-			"success"
-		);
+	const handleAddCart = (cartProduct) => {
+		fetch("https://ng-tech-server.vercel.app/cart", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(cartProduct),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.insertedId) {
+					Swal.fire(
+						"Successfully!",
+						"This product has been added to the cart!",
+						"success"
+					);
+				}
+			});
 	};
 
 	return (
@@ -46,11 +46,11 @@ const ProductDetails = () => {
 						</p>
 						<p className="text-lg">Price: {price} TK</p>
 					</div>
-					<p className="my-5 text-lg">{short_description}</p>
+					<p className="my-5 text-lg">{description}</p>
 					<div className="flex justify-end">
 						<button
 							className="btn btn-success"
-							onClick={() => handleAddCart(product_id)}
+							onClick={() => handleAddCart(product)}
 						>
 							Add to Cart
 						</button>

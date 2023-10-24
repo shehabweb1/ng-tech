@@ -29,7 +29,7 @@ const Products = () => {
 				{products.length > 0 ? (
 					<div className="py-10 grid grid-cols-1 lg:grid-cols-4 gap-5">
 						{products.map((product) => (
-							<ProductCard key={product.product_id} product={product} />
+							<ProductCard key={product._id} product={product} />
 						))}
 					</div>
 				) : (
