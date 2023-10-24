@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 				loader: () => fetch("https://ng-tech-server.vercel.app/brands"),
 			},
 			{
-				path: "/:brand",
+				path: "/brand/:brand",
 				element: <Products />,
 				loader: () => fetch("https://ng-tech-server.vercel.app/products"),
 			},
