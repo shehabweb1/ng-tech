@@ -16,34 +16,19 @@ const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState();
 	const [loading, setLoading] = useState(true);
 
-	const [userEmail, setUserEmail] = useState();
-
 	const provider = new GoogleAuthProvider();
 
 	const createUser = (email, password) => {
 		setLoading(true);
-		setUserEmail(email);
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
 	const loginWithGoogle = () => {
-		signInWithPopup(auth, provider)
-			.then((result) => {
-				Swal.fire(
-					"Thank You!",
-					"Your account has been created successful!",
-					"success"
-				);
-			})
-			.catch((error) => {
-				const errorMessage = error.message;
-				console.error(errorMessage);
-			});
+		return signInWithPopup(auth, provider);
 	};
 
 	const loginUser = (email, password) => {
 		setLoading(true);
-		setUserEmail(email);
 		return signInWithEmailAndPassword(auth, email, password);
 	};
 
@@ -62,8 +47,6 @@ const AuthProvider = ({ children }) => {
 		};
 	}, []);
 
-	
-
 	const authValue = {
 		user,
 		createUser,
@@ -71,7 +54,6 @@ const AuthProvider = ({ children }) => {
 		loginUser,
 		logOut,
 		loading,
-		userEmail,
 	};
 
 	return (

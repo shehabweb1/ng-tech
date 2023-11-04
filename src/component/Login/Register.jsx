@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
 import { AuthProviderContext } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import auth from "../../firebase/firebase.config";
 
 const Register = () => {
 	const [password, setPassword] = useState("");
@@ -44,29 +46,25 @@ const Register = () => {
 		const photo = form.get("photo");
 		const password = form.get("password");
 
-		const profile = { name, email, photo };
-
 		createUser(email, password)
 			.then((result) => {
-				fetch("https://ng-tech-server.vercel.app/users", {
-					method: "POST",
-					headers: {
-						"content-type": "application/json",
-					},
-					body: JSON.stringify(profile),
+				updateProfile(auth.currentUser, {
+					displayName: name,
+					photoURL: photo,
 				})
-					.then((res) => res.json())
-					.then((data) => {
-						if (data.insertedId) {
+					.then(() => {
+						if (result.insertedId) {
 							Swal.fire(
 								`Thank You ${name}!`,
 								"Your account has been created successful!",
 								"success"
 							);
 						}
+						navigate("/");
+					})
+					.catch((error) => {
+						console.log(error.message);
 					});
-
-				navigate("/");
 			})
 			.catch((err) => {
 				Swal.fire({
@@ -78,7 +76,21 @@ const Register = () => {
 	};
 
 	const handleJoinWithGoogle = () => {
-		loginWithGoogle();
+		loginWithGoogle()
+			.then((result) => {
+				if (result) {
+					navigate("/");
+					Swal.fire(
+						"Thank You!",
+						"Your account has been created successful!",
+						"success"
+					);
+				}
+			})
+			.catch((error) => {
+				const errorMessage = error.message;
+				console.error(errorMessage);
+			});
 	};
 
 	return (

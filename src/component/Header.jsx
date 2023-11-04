@@ -5,22 +5,12 @@ import { AuthProviderContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Header = () => {
-	const { user, userEmail, logOut } = useContext(AuthProviderContext);
+	const { user, logOut } = useContext(AuthProviderContext);
 	const navigate = useNavigate();
 
 	const [theme, setTheme] = useState(
 		localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
 	);
-
-	const [userData, setUserData] = useState();
-
-	useEffect(() => {
-		fetch("https://ng-tech-server.vercel.app/users")
-			.then((res) => res.json())
-			.then((data) => setUserData(data));
-	}, []);
-
-	const profile = userData?.find((user) => user.email === userEmail);
 
 	const handleToggle = (e) => {
 		if (e.target.checked) {
@@ -112,7 +102,7 @@ const Header = () => {
 						<div className="dropdown dropdown-end">
 							<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 								<div className="w-10 rounded-full">
-									<img src={user.photoURL || profile?.photo} />
+									<img src={user?.photoURL} />
 								</div>
 							</label>
 							<ul
@@ -120,9 +110,7 @@ const Header = () => {
 								className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 							>
 								<li>
-									<h4 className="text-xl">
-										{user.displayName || profile?.name}
-									</h4>
+									<h4 className="text-xl">{user?.displayName}</h4>
 								</li>
 								<li>
 									<button onClick={handleLogOut}>Logout</button>

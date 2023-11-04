@@ -26,7 +26,21 @@ const Login = () => {
 			});
 	};
 	const handleLoginWithGoogle = () => {
-		loginWithGoogle();
+		loginWithGoogle()
+			.then((result) => {
+				if (result) {
+					navigate(location?.state ? location.state : "/");
+					Swal.fire(
+						"Thank You!",
+						"Your account has been created successful!",
+						"success"
+					);
+				}
+			})
+			.catch((error) => {
+				const errorMessage = error.message;
+				console.error(errorMessage);
+			});
 	};
 
 	return (
